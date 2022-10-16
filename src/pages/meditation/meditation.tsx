@@ -14,7 +14,7 @@ const Meditation = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       if (running && !meditationDone) {
-        setMeditationTimer((current) => current + 10);
+        setMeditationTimer((current) => current + 1);
       }
     }, 1000);
     return () => clearInterval(timer);
