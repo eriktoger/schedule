@@ -31,6 +31,21 @@ const Meditation = () => {
     }
   }, [meditationTimer, meditationItem, meditationDone]);
 
+  useEffect(() => {
+    const wakeLock = async () => {
+      let wakeLock = null;
+      if ("wakeLock" in navigator) {
+        // create an async function to request a wake lock
+        try {
+          wakeLock = await window.navigator.wakeLock.request("screen");
+        } catch (err) {
+          console.log("what", err);
+        }
+      }
+    };
+    wakeLock();
+  }, []);
+
   return (
     <div>
       <h1>Meditation page</h1>
