@@ -65,7 +65,7 @@ const Meditation = () => {
       </button>
 
       <p>{meditationItem?.title}</p>
-      <p>{(meditationItem?.time ?? 0) - meditationTimer} </p>
+      <p>{meditationItem?.time} </p>
       <img height={100} src={`images/${meditationItem?.image}`} />
     </div>
   );
