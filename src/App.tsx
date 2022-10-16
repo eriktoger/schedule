@@ -1,8 +1,8 @@
 import "./index.css";
-import Meet from "./views/meet";
+
 
 function App() {
-  return <Meet />;
+  return (<div>Hello</div >);
 }
 
 export default App;
