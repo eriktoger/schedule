@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Header } from "components";
 import { TrainingDay, TrainingDays } from "./constants";
+import { Link } from "react-router-dom";
 
 const TrainingList = ({ trainingDay }: { trainingDay: TrainingDay }) => (
   <ul>
@@ -24,6 +25,7 @@ const Training = () => {
 
   return (
     <>
+      <Link to={"../"}>Home</Link>
       <Header text="Training page" />
       <div className="mb-5">
         {TrainingDays.map((day, i) => (

@@ -1,11 +1,11 @@
 export default function Button({
   text,
   onClick,
-  selected,
+  selected = false,
 }: {
   text: string;
   onClick: () => void;
-  selected: boolean;
+  selected?: boolean;
 }) {
   return (
     <button
