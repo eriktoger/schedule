@@ -1,25 +1,42 @@
 import { useState } from "react";
-import { TrainingDays } from "./constants";
+import { Button, Header } from "components";
+import { TrainingDay, TrainingDays } from "./constants";
 
+const TrainingList = ({ trainingDay }: { trainingDay: TrainingDay }) => (
+  <ul>
+    <li className="text-lg">
+      Exercises:{" "}
+      <span className="text-base font-light">
+        {trainingDay.exercises.join(", ")}{" "}
+      </span>
+    </li>
+    <li className="text-lg">
+      Finisher:{" "}
+      <span className="text-base font-light">{trainingDay.finisher}</span>
+    </li>
+  </ul>
+);
 const Training = () => {
-  const [trainingDay, setTrainingDay] = useState(TrainingDays[0]);
+  const [trainingDay, setTrainingDay] = useState<TrainingDay>(TrainingDays[0]);
 
   const onChangeTrainingDay = (dayIndex: number) =>
     setTrainingDay(TrainingDays[dayIndex]);
 
   return (
-    <div>
-      <h1>Training page</h1>
-      <div>
+    <>
+      <Header text="Training page" />
+      <div className="mb-5">
         {TrainingDays.map((day, i) => (
-          <button onClick={() => onChangeTrainingDay(i)}> {day.title}</button>
+          <Button
+            key={i}
+            onClick={() => onChangeTrainingDay(i)}
+            text={day.title}
+            selected={trainingDay.title === day.title}
+          />
         ))}
       </div>
-      <ul>
-        <li>Exercises: {trainingDay.exercises.join(", ")}</li>
-        <li>Finisher: {trainingDay.finisher}</li>
-      </ul>
-    </div>
+      <TrainingList trainingDay={trainingDay} />
+    </>
   );
 };
 
