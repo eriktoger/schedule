@@ -28,6 +28,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <div className="flex flex-col justify-center items-center h-screen bg-winter bg-no-repeat bg-cover">
+      <div className="bg-slate-200/70 rounded-lg p-2">
+        <RouterProvider router={router} />
+      </div>
+    </div>
   </React.StrictMode>
 );
