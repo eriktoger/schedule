@@ -1,4 +1,6 @@
+import { Button, Header } from "components";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Stretches } from "./constants";
 type StretchingKeys = keyof typeof Stretches;
 type StretchingValue = typeof Stretches[StretchingKeys];
@@ -8,24 +10,29 @@ const Stretching = () => {
     [string, StretchingValue]
   >(["sitting", Stretches.sitting]);
   return (
-    <div>
-      <h1>Streching page</h1>
+    <>
+      <Link to={"../"}>Home</Link>
+      <Header text="Stretching page" />
       <div>
-        {Object.entries(Stretches).map((entry) => {
+        {Object.entries(Stretches).map((entry, i) => {
           return (
-            <button onClick={() => setStretchPosition(entry)}>
-              {entry[0]}
-            </button>
+            <Button
+              key={i}
+              selected={stretchPosition[0] === entry[0]}
+              text={entry[0]}
+              onClick={() => setStretchPosition(entry)}
+            />
           );
         })}
       </div>
-      <h3>{stretchPosition[0]}</h3>
-      <ul>
-        {stretchPosition[1].map((position) => (
-          <li>{position}</li>
-        ))}
-      </ul>
-    </div>
+      <div className="h-56">
+        <ul className="  grid grid-cols-2 gap-1 ">
+          {stretchPosition[1].map((position) => (
+            <li key={position}>{position}</li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 
