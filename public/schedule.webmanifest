@@ -1,6 +1,6 @@
 {
     "name": "My schedule",
-    "short_name": "schedule",
+    "short_name": "Schedule",
     "description": "A schedule for meditation, stretching and training",
     "icons": [
         {"src":"logo.png","sizes":"256x256", "type":"image/png"}
