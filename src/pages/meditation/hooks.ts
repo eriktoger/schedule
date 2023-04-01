@@ -13,6 +13,8 @@ export const useMeditation = () => {
     useState<MeditationRoutine | null>(null);
   const [meditationIndex, setMeditationIndex] = useState(0);
   const [meditationDone, setMeditationDone] = useState(false);
+  const [running, setRunning] = useState(false);
+  const [meditationTimer, setMeditationTimer] = useState(0);
 
   const switchMeditationRoutine = useCallback(() => {
     const currentVersion = localStorage.getItem(meditationKey);
@@ -48,6 +50,38 @@ export const useMeditation = () => {
     () => setMeditationDone(false),
     [setMeditationDone]
   );
+  const prevIsAvailable = useMemo(
+    () => meditationRoutine && meditationIndex > 0,
+    [meditationRoutine, meditationIndex]
+  );
+  const nextIsAvailable = useMemo(
+    () => meditationRoutine && meditationIndex < meditationRoutine.length - 1,
+    [meditationRoutine, meditationIndex]
+  );
+
+  const getPrevMeditationItem = useCallback(() => {
+    if (prevIsAvailable) {
+      setMeditationIndex((prev) => prev - 1);
+      setRunning(false);
+      setMeditationTimer(0);
+    }
+  }, [prevIsAvailable]);
+
+  const getNextMediationItem = useCallback(() => {
+    if (nextIsAvailable) {
+      setMeditationIndex((prev) => prev + 1);
+      setRunning(false);
+      setMeditationTimer(0);
+    }
+  }, [nextIsAvailable]);
+
+  const handleMeditation = useCallback(() => {
+    if (meditationDone) {
+      restartMeditation();
+    }
+    setRunning((current) => !current);
+  }, [meditationDone]);
+  const handleText = meditationDone ? "Restart" : running ? "Pause" : "Start";
 
   useEffect(() => {
     const currentVersion = localStorage.getItem(meditationKey);
@@ -58,10 +92,33 @@ export const useMeditation = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (running && !meditationDone) {
+        setMeditationTimer((current) => current + 1);
+      }
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [running, setMeditationTimer, meditationDone]);
+
+  useEffect(() => {
+    if (
+      !meditationDone &&
+      meditationItem &&
+      meditationItem.time <= meditationTimer
+    ) {
+      switchMeditationItem();
+      setMeditationTimer(0);
+    }
+  }, [meditationTimer, meditationItem, meditationDone]);
+
   return {
     meditationItem,
-    meditationDone,
-    switchMeditationItem,
-    restartMeditation,
+    handleText,
+    prevIsAvailable,
+    nextIsAvailable,
+    getPrevMeditationItem,
+    getNextMediationItem,
+    handleMeditation,
   };
 };

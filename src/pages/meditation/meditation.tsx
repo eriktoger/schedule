@@ -1,35 +1,18 @@
+import { Button, Header } from "components";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useMeditation } from "./hooks";
 
 const Meditation = () => {
-  const [running, setRunning] = useState(false);
-  const [meditationTimer, setMeditationTimer] = useState(0);
   const {
     meditationItem,
-    meditationDone,
-    switchMeditationItem,
-    restartMeditation,
+    handleText,
+    prevIsAvailable,
+    nextIsAvailable,
+    getPrevMeditationItem,
+    getNextMediationItem,
+    handleMeditation,
   } = useMeditation();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (running && !meditationDone) {
-        setMeditationTimer((current) => current + 1);
-      }
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [running, setMeditationTimer, meditationDone]);
-
-  useEffect(() => {
-    if (
-      !meditationDone &&
-      meditationItem &&
-      meditationItem.time <= meditationTimer
-    ) {
-      switchMeditationItem();
-      setMeditationTimer(0);
-    }
-  }, [meditationTimer, meditationItem, meditationDone]);
 
   useEffect(() => {
     const wakeLock = async () => {
@@ -46,28 +29,39 @@ const Meditation = () => {
     wakeLock();
   }, []);
 
-  return (
-    <div>
-      <h1>Meditation page</h1>
-      <button
-        onClick={() => {
-          if (meditationDone) {
-            restartMeditation();
-          }
-          setRunning((current) => !current);
-        }}
-      >
-        {meditationDone ? (
-          "Restart"
-        ) : (
-          <span> {running ? "Pause" : "Start"}</span>
-        )}
-      </button>
+  const minutes = Math.floor((meditationItem?.time ?? 0) / 60);
+  const seconds = (meditationItem?.time ?? 0) % 60;
 
-      <p>{meditationItem?.title}</p>
-      <p>{meditationItem?.time} </p>
-      <img height={100} src={`images/${meditationItem?.image}`} />
-    </div>
+  return (
+    <>
+      <Link to={"../"}>Home</Link>
+      <Header text="Meditation Page" />
+      <div className="flex justify-center items-end">
+        <Button onClick={handleMeditation} text={handleText} />
+        <Button
+          small
+          text="Prev"
+          onClick={getPrevMeditationItem}
+          disabled={!prevIsAvailable}
+        />
+        <Button
+          small
+          text="Next"
+          onClick={getNextMediationItem}
+          disabled={!nextIsAvailable}
+        />
+      </div>
+
+      <p className="text-lg">{meditationItem?.title}</p>
+      <p>
+        Time: {minutes}m {seconds}s
+      </p>
+      <img
+        className="h-72 w-72 object-contain"
+        src={`images/${meditationItem?.image}`}
+        alt={meditationItem?.image}
+      />
+    </>
   );
 };
 

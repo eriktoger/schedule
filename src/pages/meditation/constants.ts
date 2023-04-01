@@ -20,7 +20,7 @@ export const meditationRoutineTwo = [
   { title: "Figure four - Left", time: 70, image: "figureFour.webp" },
   { title: "Squat", time: 130, image: "squat.webp" },
   { title: "Standing Toe Touch", time: 130, image: "standingToeTouch.jpg" },
-  { title: "Sitting buttefly", time: 130, image: "butterflyStretch.jpg" },
+  { title: "Sitting buttefly", time: 130, image: "butterflyStretch.png" },
   {
     title: "Meditation, left leg forward",
     time: 15 * 60 + 10,
