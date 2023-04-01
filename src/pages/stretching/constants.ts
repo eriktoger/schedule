@@ -1,5 +1,5 @@
 export const Stretches = {
-  sitting: [
+  Sitting: [
     "Squat",
     "Open leg",
     "Half seated twist",
@@ -9,7 +9,7 @@ export const Stretches = {
     "S-sit",
     "Burma",
   ],
-  standing: [
+  Standing: [
     "Ankle circles",
     "Knee circles",
     "Hip circles",
@@ -26,5 +26,5 @@ export const Stretches = {
     "Hans behind back",
     "Wall slides",
   ],
-  kneeling: ["Bird dog", "Fire hydrant", "Cat/camel", "Camel (backend)"],
+  Kneeling: ["Bird dog", "Fire hydrant", "Cat/camel", "Camel (backend)"],
 } as const;

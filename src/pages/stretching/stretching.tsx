@@ -8,7 +8,7 @@ type StretchingValue = typeof Stretches[StretchingKeys];
 const Stretching = () => {
   const [stretchPosition, setStretchPosition] = useState<
     [string, StretchingValue]
-  >(["sitting", Stretches.sitting]);
+  >(["Sitting", Stretches.Sitting]);
   return (
     <>
       <Link to={"../"}>Home</Link>
