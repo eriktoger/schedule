@@ -21,6 +21,9 @@ const Home = () => {
         <StyledLi>
           <Link to={"stretching"}>Stretching</Link>
         </StyledLi>
+        <StyledLi>
+          <Link to={"break-activities"}>Break activities</Link>
+        </StyledLi>
       </ul>
     </>
   );

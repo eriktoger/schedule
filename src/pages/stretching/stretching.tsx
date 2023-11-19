@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Stretches } from "./constants";
 type StretchingKeys = keyof typeof Stretches;
-type StretchingValue = typeof Stretches[StretchingKeys];
+type StretchingValue = (typeof Stretches)[StretchingKeys];
 
 const Stretching = () => {
   const [stretchPosition, setStretchPosition] = useState<
@@ -26,7 +26,7 @@ const Stretching = () => {
         })}
       </div>
       <div className="h-56">
-        <ul className="  grid grid-cols-2 gap-1 ">
+        <ul className="grid grid-cols-2 gap-1 ">
           {stretchPosition[1].map((position) => (
             <li key={position}>{position}</li>
           ))}

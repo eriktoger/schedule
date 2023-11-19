@@ -2,7 +2,13 @@ import React from "react";
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createHashRouter } from "react-router-dom";
-import { Home, Meditation, Stretching, Training } from "./pages";
+import {
+  Home,
+  Meditation,
+  Stretching,
+  Training,
+  BreakActivites,
+} from "./pages";
 
 const router = createHashRouter([
   {
@@ -20,6 +26,10 @@ const router = createHashRouter([
   {
     path: "/stretching",
     element: <Stretching />,
+  },
+  {
+    path: "/break-activities",
+    element: <BreakActivites />,
   },
 ]);
 
