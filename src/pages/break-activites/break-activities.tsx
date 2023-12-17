@@ -10,7 +10,7 @@ const BreakActivities = () => {
   return (
     <>
       <Link to={"../"}>Home</Link>
-      <Header text="Training page" />
+      <Header text="Break Activities page" />
       <div>
         <Button
           selected={breakKey == "home"}

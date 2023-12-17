@@ -5,7 +5,11 @@ const homeActivities = [
   },
   {
     title: "Calisthenics",
-    info: ["Bridge, Crow stand, One leg squat", "Hindu push up"],
+    info: [
+      "Headstand, L-sit",
+      "Bridge, Crow stand, One leg squat",
+      "Hindu push up",
+    ],
   },
   {
     title: "Ring work",

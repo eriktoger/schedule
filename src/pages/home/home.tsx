@@ -22,7 +22,7 @@ const Home = () => {
           <Link to={"stretching"}>Stretching</Link>
         </StyledLi>
         <StyledLi>
-          <Link to={"break-activities"}>Break activities</Link>
+          <Link to={"break-activities"}>Break Activities</Link>
         </StyledLi>
       </ul>
     </>
