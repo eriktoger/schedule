@@ -21,7 +21,7 @@ export const TrainingDays = [
   },
   {
     title: "Fri",
-    exercises:["One leg squat", "Push press"],
+    exercises: ["One leg squat", "Push press"],
     finisher: "Sandbag",
   },
   {
@@ -31,9 +31,9 @@ export const TrainingDays = [
   },
   {
     title: "Sun",
-    exercises:["RDL","Over head squat"]  ,
+    exercises: ["RDL", "Over head squat"],
     finisher: "No finisher",
   },
 ] as const;
 
-export type TrainingDay = typeof TrainingDays[number];
+export type TrainingDay = (typeof TrainingDays)[number];

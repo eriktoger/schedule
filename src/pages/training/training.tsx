@@ -18,7 +18,10 @@ const TrainingList = ({ trainingDay }: { trainingDay: TrainingDay }) => (
   </ul>
 );
 const Training = () => {
-  const [trainingDay, setTrainingDay] = useState<TrainingDay>(TrainingDays[0]);
+  const currentDay = new Date().getDay();
+  const [trainingDay, setTrainingDay] = useState<TrainingDay>(
+    TrainingDays[currentDay - 1],
+  );
 
   const onChangeTrainingDay = (dayIndex: number) =>
     setTrainingDay(TrainingDays[dayIndex]);

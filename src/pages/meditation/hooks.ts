@@ -48,15 +48,15 @@ export const useMeditation = () => {
 
   const restartMeditation = useCallback(
     () => setMeditationDone(false),
-    [setMeditationDone]
+    [setMeditationDone],
   );
   const prevIsAvailable = useMemo(
     () => meditationRoutine && meditationIndex > 0,
-    [meditationRoutine, meditationIndex]
+    [meditationRoutine, meditationIndex],
   );
   const nextIsAvailable = useMemo(
     () => meditationRoutine && meditationIndex < meditationRoutine.length - 1,
-    [meditationRoutine, meditationIndex]
+    [meditationRoutine, meditationIndex],
   );
 
   const getPrevMeditationItem = useCallback(() => {
