@@ -20,7 +20,7 @@ const TrainingList = ({ trainingDay }: { trainingDay: TrainingDay }) => (
 const Training = () => {
   const currentDay = new Date().getDay();
   const [trainingDay, setTrainingDay] = useState<TrainingDay>(
-    TrainingDays[currentDay - 1],
+    TrainingDays[(currentDay + 6) % 7],
   );
 
   const onChangeTrainingDay = (dayIndex: number) =>
