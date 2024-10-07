@@ -1,37 +1,37 @@
 export const TrainingDays = [
   {
     title: "Mon",
-    exercises: ["Snatch", "Calf raises"],
+    exercises: ["Pull-ups", "Dips"],
     finisher: "Sledge",
   },
   {
     title: "Tue",
-    exercises: ["Squats", "Swings"],
-    finisher: "Ring hang",
-  },
-  {
-    title: "Wed",
-    exercises: ["Dips", "Pull ups"],
-    finisher: "Jumps",
-  },
-  {
-    title: "Thu",
     exercises: ["Clean and Press", "Curls"],
-    finisher: "Core",
-  },
-  {
-    title: "Fri",
-    exercises: ["One leg squat", "Push press"],
-    finisher: "Sandbag",
-  },
-  {
-    title: "Sat",
-    exercises: ["Push ups", "Rows"],
     finisher: "Over head carry",
   },
   {
+    title: "Wed",
+    exercises: ["Push ups", "Rows", "One leg Squats", "Swings"],
+    finisher: "No finisher",
+  },
+  {
+    title: "Thu",
+    exercises: ["Pull ups", "Dips"],
+    finisher: "Sandbag",
+  },
+  {
+    title: "Fri",
+    exercises: ["Push press", "Rows", "RDL", "Lunges"],
+    finisher: "No finisher",
+  },
+  {
+    title: "Sat",
+    exercises: ["Snatch", "Calf raises", "One leg Squats"],
+    finisher: "Ring hang",
+  },
+  {
     title: "Sun",
-    exercises: ["RDL", "Over head squat"],
+    exercises: ["Hill sprints"],
     finisher: "No finisher",
   },
 ] as const;
