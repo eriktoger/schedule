@@ -9,6 +9,7 @@ import {
   Training,
   BreakActivites,
 } from "./pages";
+import { MeditationTimer } from "./pages/meditation";
 
 const router = createHashRouter([
   {
@@ -24,6 +25,10 @@ const router = createHashRouter([
     element: <Meditation />,
   },
   {
+    path: "/meditationTimer",
+    element: <MeditationTimer />,
+  },
+  {
     path: "/stretching",
     element: <Stretching />,
   },
@@ -34,7 +39,7 @@ const router = createHashRouter([
 ]);
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement,
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
@@ -43,5 +48,5 @@ root.render(
         <RouterProvider router={router} />
       </div>
     </div>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

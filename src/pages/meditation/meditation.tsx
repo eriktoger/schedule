@@ -1,7 +1,6 @@
 import { Button, Header } from "components";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useMeditation } from "./hooks";
+import { useMeditation, useWakeLock } from "./hooks";
 
 const Meditation = () => {
   const {
@@ -14,20 +13,7 @@ const Meditation = () => {
     handleMeditation,
   } = useMeditation();
 
-  useEffect(() => {
-    const wakeLock = async () => {
-      let wakeLock = null;
-      if ("wakeLock" in navigator) {
-        // create an async function to request a wake lock
-        try {
-          wakeLock = await window.navigator.wakeLock.request("screen");
-        } catch (err) {
-          console.log("what", err);
-        }
-      }
-    };
-    wakeLock();
-  }, []);
+  useWakeLock();
 
   const minutes = Math.floor((meditationItem?.time ?? 0) / 60);
   const seconds = (meditationItem?.time ?? 0) % 60;

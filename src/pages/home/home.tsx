@@ -19,6 +19,9 @@ const Home = () => {
           <Link to={"meditation"}>Meditation</Link>
         </StyledLi>
         <StyledLi>
+          <Link to={"meditationTimer"}>Meditation Timer</Link>
+        </StyledLi>
+        <StyledLi>
           <Link to={"stretching"}>Stretching</Link>
         </StyledLi>
         <StyledLi>

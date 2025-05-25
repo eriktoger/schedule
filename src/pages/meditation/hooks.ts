@@ -6,6 +6,27 @@ import {
   meditationRoutineTwo,
 } from "./constants";
 
+export const useGetPlaySound = () => {
+  const playSound = useCallback(() => {
+    const audio = new Audio("/zen-gong2.wav");
+    let playCount = 0;
+    const maxPlays = 3;
+
+    audio.addEventListener("ended", () => {
+      playCount += 1;
+      if (playCount < maxPlays) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    });
+
+    audio.play().catch((e) => {
+      console.log("Audio playback failed:", e);
+    });
+  }, []);
+  return playSound;
+};
+
 const meditationKey = "meditationRoutine";
 
 export const useMeditation = () => {
@@ -27,23 +48,7 @@ export const useMeditation = () => {
     }
   }, []);
 
-  const playSound = useCallback(() => {
-    const audio = new Audio("/zen-gong2.wav");
-    let playCount = 0;
-    const maxPlays = 3;
-
-    audio.addEventListener("ended", () => {
-      playCount += 1;
-      if (playCount < maxPlays) {
-        audio.currentTime = 0;
-        audio.play();
-      }
-    });
-
-    audio.play().catch((e) => {
-      console.log("Audio playback failed:", e);
-    });
-  }, []);
+  const playSound = useGetPlaySound();
 
   const switchMeditationItem = useCallback(() => {
     playSound();
@@ -142,4 +147,21 @@ export const useMeditation = () => {
     getNextMediationItem,
     handleMeditation,
   };
+};
+
+export const useWakeLock = () => {
+  useEffect(() => {
+    const wakeLock = async () => {
+      let wakeLock = null;
+      if ("wakeLock" in navigator) {
+        // create an async function to request a wake lock
+        try {
+          wakeLock = await window.navigator.wakeLock.request("screen");
+        } catch (err) {
+          console.log("what", err);
+        }
+      }
+    };
+    wakeLock();
+  }, []);
 };
