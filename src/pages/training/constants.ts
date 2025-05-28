@@ -16,7 +16,7 @@ export const TrainingDays = [
   },
   {
     title: "Thu",
-    exercises: ["Pull ups", "Dips"],
+    exercises: ["Snatch", "Calf raises", "Squats"],
     finisher: "Sandbag",
   },
   {
@@ -26,8 +26,8 @@ export const TrainingDays = [
   },
   {
     title: "Sat",
-    exercises: ["Snatch", "Calf raises", "One leg Squats"],
-    finisher: "Ring hang",
+    exercises: ["Bicycle"],
+    finisher: "No finisher",
   },
   {
     title: "Sun",
