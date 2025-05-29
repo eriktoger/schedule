@@ -1,12 +1,13 @@
 import { Button, Header } from "components";
 import { useGetPlaySound, useWakeLock } from "./hooks";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const timers = [1, 5, 10, 15];
+const oneSecond = 1000;
 
 export const MeditationTimer = () => {
-  const [, setMeditationTimer] = useState(0);
+  const meditationTimer = useRef(0);
   const [currentTimer, setCurrentTimer] = useState(0);
   const [running, setRunning] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -16,19 +17,16 @@ export const MeditationTimer = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       if (running) {
-        setMeditationTimer((current) => {
-          if (current >= currentTimer * 60) {
-            playSound();
-            setRunning(false);
-            clearInterval(timer);
-            return 0;
-          }
-          return current + 1;
-        });
+        meditationTimer.current += 1;
+        if (meditationTimer.current >= currentTimer * 60) {
+          playSound();
+          setRunning(false);
+          clearInterval(timer);
+        }
       }
-    }, 1000);
+    }, oneSecond);
     return () => clearInterval(timer);
-  }, [running, setMeditationTimer]);
+  }, [running]);
 
   if (paused) {
     return (
@@ -79,7 +77,8 @@ export const MeditationTimer = () => {
             key={time}
             text={`${time} min`}
             onClick={() => {
-              setMeditationTimer(0);
+              playSound();
+              meditationTimer.current = 0;
               setCurrentTimer(time);
               setRunning(true);
             }}
