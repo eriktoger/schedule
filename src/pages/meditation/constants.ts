@@ -7,7 +7,7 @@ export const meditationRoutineOne = [
   { title: "Toe touch", time: 130, image: "toeTouch.jpg" },
   { title: "Lying buttefly", time: 130, image: "lyingButterfly.jpg" },
   {
-    title: "Meditation, right leg forward",
+    title: "MeditationRight",
     time: 15 * 60 + 10,
     image: "burmesePosition.jpg",
   },
@@ -22,7 +22,7 @@ export const meditationRoutineTwo = [
   { title: "Standing Toe Touch", time: 130, image: "standingToeTouch.jpg" },
   { title: "Sitting buttefly", time: 130, image: "butterflyStretch.png" },
   {
-    title: "Meditation, left leg forward",
+    title: "MeditationLeft",
     time: 15 * 60 + 10,
     image: "burmesePosition.jpg",
   },

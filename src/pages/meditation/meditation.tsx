@@ -2,6 +2,26 @@ import { Button, Header } from "components";
 import { Link } from "react-router-dom";
 import { useMeditation, useWakeLock } from "./hooks";
 
+const MeditationTitle = ({ title }: { title: string | undefined }) => {
+  if (title === "MeditationLeft") {
+    return (
+      <p className="text-lg">
+        Meditation, <span className="font-bold">left leg</span> forwad
+      </p>
+    );
+  }
+
+  if (title === "MeditationRight") {
+    return (
+      <p className="text-lg">
+        Meditation, <span className="font-bold">right leg</span> forwad
+      </p>
+    );
+  }
+
+  return <p className="text-lg">{title}</p>;
+};
+
 const Meditation = () => {
   const {
     meditationItem,
@@ -38,7 +58,7 @@ const Meditation = () => {
         />
       </div>
 
-      <p className="text-lg">{meditationItem?.title}</p>
+      <MeditationTitle title={meditationItem?.title} />
       <p>
         Time: {minutes}m {seconds}s
       </p>
