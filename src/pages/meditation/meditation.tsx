@@ -5,16 +5,16 @@ import { useMeditation, useWakeLock } from "./hooks";
 const MeditationTitle = ({ title }: { title: string | undefined }) => {
   if (title === "MeditationLeft") {
     return (
-      <p className="text-lg">
-        Meditation, <span className="font-bold">left leg</span> forwad
+      <p className="text-xl">
+        Meditation, <span className="font-bold">left leg</span> forward
       </p>
     );
   }
 
   if (title === "MeditationRight") {
     return (
-      <p className="text-lg">
-        Meditation, <span className="font-bold">right leg</span> forwad
+      <p className="text-xl">
+        Meditation, <span className="font-bold">right leg</span> forward
       </p>
     );
   }
