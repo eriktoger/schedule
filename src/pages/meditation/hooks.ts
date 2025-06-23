@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   meditationDoneItem,
   MeditationRoutine,
@@ -150,18 +150,36 @@ export const useMeditation = () => {
 };
 
 export const useWakeLock = () => {
-  useEffect(() => {
-    const wakeLock = async () => {
-      let wakeLock = null;
+  const wakeLockRef = useRef<WakeLockSentinel | null>(null);
+
+  const requestWakeLock = async () => {
+    try {
       if ("wakeLock" in navigator) {
-        // create an async function to request a wake lock
-        try {
-          wakeLock = await window.navigator.wakeLock.request("screen");
-        } catch (err) {
-          console.log("what", err);
-        }
+        wakeLockRef.current = await navigator.wakeLock.request("screen");
+        console.log("Wake Lock is active");
+      }
+    } catch (err) {
+      console.error("Failed to acquire wake lock:", err);
+    }
+  };
+
+  useEffect(() => {
+    requestWakeLock();
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        requestWakeLock();
       }
     };
-    wakeLock();
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      // Clean up wake lock
+      wakeLockRef.current?.release().catch((err) => {
+        console.warn("Failed to release wake lock:", err);
+      });
+    };
   }, []);
 };
