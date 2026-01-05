@@ -15,6 +15,10 @@ const TrainingList = ({ trainingDay }: { trainingDay: TrainingDay }) => (
       Finisher:{" "}
       <span className="text-base font-light">{trainingDay.finisher}</span>
     </li>
+     <li className="text-lg">
+      Skill:{" "}
+      <span className="text-base font-light">{trainingDay.skill}</span>
+    </li>
   </ul>
 );
 const Training = () => {
